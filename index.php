@@ -1,4 +1,11 @@
-
+<?php
+  if(isset($_POST['editar'])){
+    $texto = $_POST['texto'];
+$arquivo = $_POST['arquivo'];
+file_put_contents($arquivo,$texto);
+echo '<div>Editado com sucesso!!</div>';
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -72,11 +79,12 @@ for($i = 0;$i < count($files);$i++){
     if(isset($_GET['file']) && file_exists('files/'.$_GET['file'])){
         echo '<h2>Editando o Arquivo: '.$_GET['file'].'</h2>';
         echo '<form method="POST" >';
-        echo '<textarea id="texto" name="texto">'.file_get_contents('files/'.$_GET['file']).'</textarea>';
+        echo '<textarea style="width:100%;height:400px;" id="texto" name="texto">'.file_get_contents('files/'.$_GET['file']).'</textarea>';
         echo '<input id="arquivo" type="hidden" name="arquivo" value="'.'files/'.$_GET['file'].'" >';
         echo '<input  name="editar" type="submit" value="Editar" >';
         echo '</form>';
     }
+  
 ?>
 
 </div>
